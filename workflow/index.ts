@@ -5,11 +5,11 @@
 
 import { createWorkflow } from '@mastra/core/workflows';
 import { z } from 'zod';
-import { extractStep } from './steps/extractStep.js';
-import { validateStep } from './steps/validateStep.js';
-import { storeStep } from './steps/storeStep.js';
-import { forecastStep } from './steps/forecastStep.js';
-import { summarizeStep } from './steps/summarizeStep.js';
+import { extractStep } from './steps/extractStep.ts';
+import { validateStep } from './steps/validateStep.ts';
+import { storeStep } from './steps/storeStep.ts';
+import { forecastStep } from './steps/forecastStep.ts';
+import { summarizeStep } from './steps/summarizeStep.ts';
 
 export const ledgerLensWorkflow = createWorkflow({
   id: 'ledgerlens-pipeline',

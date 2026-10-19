@@ -10,7 +10,10 @@
   },
   "dependencies": {
     "@mastra/core": "^1.60.0",
+    "cors": "^2.8.6",
     "dotenv": "^16.4.7",
+    "express": "^5.3.0",
+    "multer": "^2.4.0",
     "zod": "^3.24.2"
   },
   "devDependencies": {

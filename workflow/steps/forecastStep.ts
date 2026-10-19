@@ -1,7 +1,7 @@
 import { createStep } from '@mastra/core/workflows';
 import { z } from 'zod';
-import { callBackend } from '../client.js';
-import { transactionItemSchema } from './extractStep.js';
+import { callBackend } from '../client.ts';
+import { transactionItemSchema } from './extractStep.ts';
 
 export const forecastStep = createStep({
   id: 'forecast-step',

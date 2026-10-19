@@ -1,6 +1,6 @@
 import { createStep } from '@mastra/core/workflows';
 import { z } from 'zod';
-import { callBackend } from '../client.js';
+import { callBackend } from '../client.ts';
 
 export const transactionItemSchema = z.object({
   id: z.number().optional().nullable(),

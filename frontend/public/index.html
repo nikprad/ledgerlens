@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LedgerLens — Local-First AI Shop Ledger & Financial Agent</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Chart.js for 30-day Cash Flow Forecast with Uncertainty Range -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <span class="logo-icon">📜🔍</span>
+        <div>
+          <h1>LedgerLens</h1>
+          <p class="tagline">Local-First Agent for Handwritten Bills, Receipts & Shop Ledgers</p>
+        </div>
+      </div>
+      <div class="header-badges">
+        <span class="badge badge-hustle">Side Hustle / Hacktoberfest</span>
+        <span class="badge badge-local">100% Local AI Core</span>
+      </div>
+    </header>
+
+    <!-- Privacy Status Panel -->
+    <section class="privacy-panel" id="privacyPanel">
+      <div class="privacy-header">
+        <div class="privacy-title">
+          <span class="lock-icon">🔒</span>
+          <h3>Privacy & Local Execution Status</h3>
+        </div>
+        <div class="privacy-toggle-wrapper">
+          <label class="switch">
+            <input type="checkbox" id="tabpfnToggle">
+            <span class="slider round"></span>
+          </label>
+          <span class="toggle-label" id="tabpfnToggleLabel">TabPFN Mode: <strong>LOCAL (On-Device CPU)</strong></span>
+        </div>
+      </div>
+      <div class="privacy-grid">
+        <div class="privacy-card">
+          <span class="card-label">Vision Model</span>
+          <span class="card-value" id="visionModelStatus">Gemma Multimodal (gemma3:4b via Ollama)</span>
+          <span class="sub-badge green-badge">Local On-Device</span>
+        </div>
+        <div class="privacy-card">
+          <span class="card-label">Prediction Engine</span>
+          <span class="card-value" id="tabpfnModelStatus">TabPFN-v2 (Zero-shot Foundation Model)</span>
+          <span class="sub-badge green-badge" id="tabpfnBadge">On-Device CPU</span>
+        </div>
+        <div class="privacy-card">
+          <span class="card-label">Financial Database</span>
+          <span class="card-value">SQLite (ledgerlens.db)</span>
+          <span class="sub-badge green-badge">Local Machine</span>
+        </div>
+        <div class="privacy-card">
+          <span class="card-label">Customer Data Egress</span>
+          <span class="card-value" id="egressStatus">Zero Customer Data Leaves Machine</span>
+          <span class="sub-badge green-badge" id="egressBadge">Strictly Local</span>
+        </div>
+      </div>
+      <p class="privacy-note" id="privacyNote">
+        🛡️ <strong>Zero-Cloud Guarantee:</strong> Ledger images, customer names, handwritten Hindi/English notes, and store items never leave your device. If TabPFN API mode is turned on, only anonymized numeric matrices (day indices and amounts) are transmitted.
+      </p>
+    </section>
+
+    <!-- Upload & Workflow Orchestration Section -->
+    <section class="workflow-section">
+      <div class="workflow-card">
+        <h2>1. Scan or Select Handwritten Ledger Page</h2>
+        <div class="upload-controls">
+          <div class="drop-zone" id="dropZone">
+            <input type="file" id="fileInput" accept="image/*" hidden>
+            <div class="drop-content" id="dropContent">
+              <span class="upload-icon">📸</span>
+              <p>Drag & drop ledger photo here, or <button type="button" class="btn-link" id="browseBtn">browse files</button></p>
+              <small>Supports PNG, JPG, JPEG (Handwritten Hindi, English, or mixed)</small>
+            </div>
+            <div class="preview-content hidden" id="previewContent">
+              <img id="imagePreview" src="" alt="Selected Ledger">
+              <p id="imagePreviewName" class="preview-name"></p>
+            </div>
+          </div>
+
+          <div class="sample-picker">
+            <label for="sampleSelect">Or choose a preloaded Indian shop sample:</label>
+            <select id="sampleSelect">
+              <option value="">-- Choose a sample ledger --</option>
+            </select>
+            <button class="btn btn-primary" id="runPipelineBtn" disabled>
+              ⚡ Run Mastra Workflow Pipeline
+            </button>
+          </div>
+        </div>
+
+        <!-- Workflow Step Tracker -->
+        <div class="step-tracker" id="stepTracker">
+          <div class="step-item" id="step-extract">
+            <span class="step-num">1</span>
+            <span class="step-text">Extract (Gemma Vision)</span>
+          </div>
+          <div class="step-arrow">→</div>
+          <div class="step-item" id="step-validate">
+            <span class="step-num">2</span>
+            <span class="step-text">Validate & Deduplicate</span>
+          </div>
+          <div class="step-arrow">→</div>
+          <div class="step-item" id="step-store">
+            <span class="step-num">3</span>
+            <span class="step-text">Store (SQLite)</span>
+          </div>
+          <div class="step-arrow">→</div>
+          <div class="step-item" id="step-forecast">
+            <span class="step-num">4</span>
+            <span class="step-text">Forecast & Anomalies (TabPFN)</span>
+          </div>
+          <div class="step-arrow">→</div>
+          <div class="step-item" id="step-summarize">
+            <span class="step-num">5</span>
+            <span class="step-text">Summarize (Local Model)</span>
+          </div>
+        </div>
+
+        <!-- Observability Latency & Token Bar -->
+        <div class="observability-bar hidden" id="obsBar">
+          <span class="obs-title">⚡ Step Latencies & Tokens:</span>
+          <span class="obs-item" id="obsExtract">Extract: -</span>
+          <span class="obs-item" id="obsValidate">Validate: -</span>
+          <span class="obs-item" id="obsStore">Store: -</span>
+          <span class="obs-item" id="obsForecast">Forecast: -</span>
+          <span class="obs-item" id="obsTotal">Total: -</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Weekly Summary Banner -->
+    <section class="summary-section hidden" id="summarySection">
+      <div class="summary-card">
+        <div class="summary-header">
+          <span class="summary-icon">💡</span>
+          <h3>Weekly Financial Summary</h3>
+          <span class="badge badge-info" id="summaryPeriod">This Week</span>
+        </div>
+        <p class="summary-text" id="summaryText">Analyzing transactions...</p>
+        <div class="summary-stats">
+          <div class="stat-box">
+            <span class="stat-label">Total Sales (जमा)</span>
+            <span class="stat-val text-green" id="summarySales">₹0.00</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">Total Expenses (खर्च)</span>
+            <span class="stat-val text-red" id="summaryExpenses">₹0.00</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">Net Balance</span>
+            <span class="stat-val" id="summaryNet">₹0.00</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Anomaly Detection Section -->
+    <section class="anomalies-section hidden" id="anomaliesSection">
+      <div class="section-title">
+        <span class="icon">⚠️</span>
+        <h3>TabPFN Anomaly Flags (<span id="anomalyCount">0</span> detected)</h3>
+      </div>
+      <p class="section-subtitle">Unusual expenses, potential duplicate bills, and abnormal supplier frequencies flagged for review.</p>
+      <div class="anomalies-grid" id="anomaliesList"></div>
+    </section>
+
+    <!-- Editable Spreadsheet Section -->
+    <section class="table-section">
+      <div class="table-header-row">
+        <div>
+          <h2>2. Cleaned Transactions Table</h2>
+          <p class="table-sub">Directly edit rows, verify highlighted low-confidence items (<span class="badge-review-sample">&lt; 0.7 confidence</span>), or add manual entries.</p>
+        </div>
+        <div class="table-actions">
+          <button class="btn btn-secondary" id="addRowBtn">+ Add Row</button>
+          <button class="btn btn-secondary" id="saveTableBtn">💾 Save Edits</button>
+          <button class="btn btn-outline" id="downloadCsvBtn">📥 CSV</button>
+          <button class="btn btn-outline" id="downloadXlsxBtn">📊 Excel (XLSX)</button>
+          <button class="btn btn-danger-outline" id="clearAllBtn">🗑️ Clear Data</button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table id="transactionsTable">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Party / Customer</th>
+              <th>Item / Description</th>
+              <th style="width: 80px;">Qty</th>
+              <th style="width: 120px;">Amount (₹)</th>
+              <th style="width: 100px;">Type</th>
+              <th style="width: 100px;">Confidence</th>
+              <th>Review Status</th>
+              <th style="width: 60px;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="transactionsBody">
+            <tr>
+              <td colspan="9" class="empty-state">No transactions yet. Scan a ledger image or load demo data below.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Cash Flow Forecast Section -->
+    <section class="forecast-section">
+      <div class="forecast-header">
+        <div>
+          <h2>3. TabPFN 30-Day Cash-Flow Forecast</h2>
+          <p class="section-subtitle">Probabilistic projection with 95% uncertainty interval predicting net cash flow from your shop's history.</p>
+        </div>
+        <div class="forecast-actions">
+          <button class="btn btn-accent" id="seedDemoBtn">🎲 Load 35-Day Demo History</button>
+          <button class="btn btn-secondary" id="refreshForecastBtn">🔄 Re-forecast</button>
+        </div>
+      </div>
+
+      <!-- Insufficient Data Warning Banner -->
+      <div class="insufficient-banner hidden" id="insufficientBanner">
+        <span class="banner-icon">ℹ️</span>
+        <div>
+          <strong>Insufficient Historical Data for Time Series Projection</strong>
+          <p id="insufficientMsg">Fewer than 20 daily points found. TabPFN time series forecasting requires ~20 daily observations. Click "Load 35-Day Demo History" above to preview a 30-day forecast.</p>
+        </div>
+      </div>
+
+      <div class="chart-wrapper" id="chartWrapper">
+        <canvas id="forecastChart"></canvas>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p><strong>LedgerLens</strong> — Open-Source AI for Shopkeepers & Freelancers. Built for the Hacktoberfest Open-Source AI Challenge.</p>
+      <p class="footer-meta">Powered by Gemma (Multimodal Vision via Ollama), TabPFN (Prior Labs), Mastra (TypeScript Orchestration), and FastAPI.</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
