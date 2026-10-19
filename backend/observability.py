@@ -6,7 +6,7 @@ Logs step latencies, token counts, and execution metrics to a local JSON file.
 import os
 import json
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, Any, Optional
 from backend.config import settings
 
@@ -36,7 +36,7 @@ class ObservabilityLogger:
     ) -> Dict[str, Any]:
         """Record a single execution step to the JSON log."""
         record = {
-            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
             "step": step_name,
             "latency_ms": round(latency_ms, 2),
             "token_count": token_count or 0,
