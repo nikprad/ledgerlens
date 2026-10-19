@@ -1,0 +1,42 @@
+[
+  {
+    "date": "2026-10-12",
+    "party": "Sharma General Store",
+    "item": "Atta (Wheat Flour) 10kg",
+    "quantity": 1.0,
+    "amount": 380.0,
+    "currency": "INR",
+    "type": "sale",
+    "confidence": 1.0
+  },
+  {
+    "date": "2026-10-12",
+    "party": "Sharma General Store",
+    "item": "Mustard Oil (Sarson Tel)",
+    "quantity": 2.0,
+    "amount": 320.0,
+    "currency": "INR",
+    "type": "sale",
+    "confidence": 1.0
+  },
+  {
+    "date": "2026-10-12",
+    "party": "Sharma General Store",
+    "item": "Sugar (Cheeni) 5kg",
+    "quantity": 5.0,
+    "amount": 220.0,
+    "currency": "INR",
+    "type": "sale",
+    "confidence": 1.0
+  },
+  {
+    "date": "2026-10-12",
+    "party": "Electricity Board",
+    "item": "Shop Electricity Bill (Bijli)",
+    "quantity": 1.0,
+    "amount": 1450.0,
+    "currency": "INR",
+    "type": "expense",
+    "confidence": 1.0
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "date": "2026-10-18",
+    "party": "Vikram",
+    "item": "Mobile Recharge",
+    "quantity": 1.0,
+    "amount": 499.0,
+    "currency": "INR",
+    "type": "sale",
+    "confidence": 1.0
+  },
+  {
+    "date": "2026-10-18",
+    "party": "Sunil",
+    "item": "Spices Masala Packets",
+    "quantity": 8.0,
+    "amount": 360.0,
+    "currency": "INR",
+    "type": "sale",
+    "confidence": 1.0
+  },
+  {
+    "date": "2026-10-18",
+    "party": "Stationery Shop",
+    "item": "bill book & pen",
+    "quantity": 2.0,
+    "amount": 180.0,
+    "currency": "INR",
+    "type": "expense",
+    "confidence": 1.0
+  },
+  {
+    "date": "2026-10-18",
+    "party": "Landlord",
+    "item": "Shop Rent advance (दुकान किराया)",
+    "quantity": 1.0,
+    "amount": 8000.0,
+    "currency": "INR",
+    "type": "expense",
+    "confidence": 1.0
+  }
+]

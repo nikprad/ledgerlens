@@ -1,0 +1,42 @@
+[
+  {
+    "date": "2026-10-16",
+    "party": "Counter Customer",
+    "item": "LED Bulb 9W (Bajaj)",
+    "quantity": 6.0,
+    "amount": 480.0,
+    "currency": "INR",
+    "type": "sale",
+    "confidence": 1.0
+  },
+  {
+    "date": "2026-10-16",
+    "party": "Counter Customer",
+    "item": "PVC Pipe 1 inch",
+    "quantity": 4.0,
+    "amount": 640.0,
+    "currency": "INR",
+    "type": "sale",
+    "confidence": 1.0
+  },
+  {
+    "date": "2026-10-16",
+    "party": "Sharma Tools",
+    "item": "Wholesale Stock (Sharma Tools)",
+    "quantity": 1.0,
+    "amount": 18500.0,
+    "currency": "INR",
+    "type": "expense",
+    "confidence": 1.0
+  },
+  {
+    "date": "2026-10-16",
+    "party": "Labour",
+    "item": "Labour charges (Palledari)",
+    "quantity": 2.0,
+    "amount": 500.0,
+    "currency": "INR",
+    "type": "expense",
+    "confidence": 1.0
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "date": "2026-10-15",
+    "party": "रमेश किराना",
+    "item": "दाल अरहर (Dal)",
+    "quantity": 3.0,
+    "amount": 420.0,
+    "currency": "INR",
+    "type": "sale",
+    "confidence": 1.0
+  },
+  {
+    "date": "2026-10-15",
+    "party": "राजू भईया",
+    "item": "चावल बासमती (Rice)",
+    "quantity": 10.0,
+    "amount": 750.0,
+    "currency": "INR",
+    "type": "sale",
+    "confidence": 1.0
+  },
+  {
+    "date": "2026-10-15",
+    "party": "Tempo Driver",
+    "item": "टेंपो भाड़ा (Tempo Transport)",
+    "quantity": 1.0,
+    "amount": 350.0,
+    "currency": "INR",
+    "type": "expense",
+    "confidence": 1.0
+  },
+  {
+    "date": "2026-10-15",
+    "party": "Staff",
+    "item": "दुकान झाड़ू पोछा (Cleaning)",
+    "quantity": 1.0,
+    "amount": 200.0,
+    "currency": "INR",
+    "type": "expense",
+    "confidence": 1.0
+  }
+]

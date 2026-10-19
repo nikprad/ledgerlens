@@ -1,0 +1,42 @@
+[
+  {
+    "date": "2026-10-14",
+    "party": "Counter Sales",
+    "item": "Special Masala Chai",
+    "quantity": 15.0,
+    "amount": 150.0,
+    "currency": "INR",
+    "type": "sale",
+    "confidence": 1.0
+  },
+  {
+    "date": "2026-10-14",
+    "party": "Counter Sales",
+    "item": "Samosa",
+    "quantity": 10.0,
+    "amount": 120.0,
+    "currency": "INR",
+    "type": "sale",
+    "confidence": 1.0
+  },
+  {
+    "date": "2026-10-14",
+    "party": "Amul",
+    "item": "Milk Supply (Amul)",
+    "quantity": 10.0,
+    "amount": 620.0,
+    "currency": "INR",
+    "type": "expense",
+    "confidence": 1.0
+  },
+  {
+    "date": "2026-10-14",
+    "party": "Gas Agency",
+    "item": "LPG Gas Cylinder refill",
+    "quantity": 1.0,
+    "amount": 950.0,
+    "currency": "INR",
+    "type": "expense",
+    "confidence": 1.0
+  }
+]
