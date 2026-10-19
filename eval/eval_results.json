@@ -1,0 +1,76 @@
+{
+  "model": "gemma3:4b",
+  "samples_count": 5,
+  "overall_accuracy_pct": 100.0,
+  "average_latency_ms": 4142.55,
+  "field_accuracies": {
+    "date_pct": 100.0,
+    "party_pct": 100.0,
+    "item_pct": 100.0,
+    "quantity_pct": 100.0,
+    "amount_pct": 100.0,
+    "type_pct": 100.0
+  },
+  "per_sample_results": [
+    {
+      "image": "sample_1_kiranastore.png",
+      "ground_truth_count": 4,
+      "extracted_count": 4,
+      "latency_ms": 4256.44,
+      "date_acc": 100.0,
+      "party_acc": 100.0,
+      "item_acc": 100.0,
+      "quantity_acc": 100.0,
+      "amount_acc": 100.0,
+      "type_acc": 100.0
+    },
+    {
+      "image": "sample_2_chai_tea_bill.png",
+      "ground_truth_count": 4,
+      "extracted_count": 4,
+      "latency_ms": 4091.49,
+      "date_acc": 100.0,
+      "party_acc": 100.0,
+      "item_acc": 100.0,
+      "quantity_acc": 100.0,
+      "amount_acc": 100.0,
+      "type_acc": 100.0
+    },
+    {
+      "image": "sample_3_hindi_khata.png",
+      "ground_truth_count": 4,
+      "extracted_count": 4,
+      "latency_ms": 4133.76,
+      "date_acc": 100.0,
+      "party_acc": 100.0,
+      "item_acc": 100.0,
+      "quantity_acc": 100.0,
+      "amount_acc": 100.0,
+      "type_acc": 100.0
+    },
+    {
+      "image": "sample_4_hardware_invoice.png",
+      "ground_truth_count": 4,
+      "extracted_count": 4,
+      "latency_ms": 4118.06,
+      "date_acc": 100.0,
+      "party_acc": 100.0,
+      "item_acc": 100.0,
+      "quantity_acc": 100.0,
+      "amount_acc": 100.0,
+      "type_acc": 100.0
+    },
+    {
+      "image": "sample_5_daily_ledger_mixed.png",
+      "ground_truth_count": 4,
+      "extracted_count": 4,
+      "latency_ms": 4112.99,
+      "date_acc": 100.0,
+      "party_acc": 100.0,
+      "item_acc": 100.0,
+      "quantity_acc": 100.0,
+      "amount_acc": 100.0,
+      "type_acc": 100.0
+    }
+  ]
+}

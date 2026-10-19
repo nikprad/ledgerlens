@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: ledgerlens
+    runtime: docker
+    plan: starter
+    region: oregon
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: FRONTEND_PORT
+        value: 3000
+      - key: BACKEND_PORT
+        value: 8000
+      - key: BACKEND_URL
+        value: http://127.0.0.1:8000
+      # Configure to point to your GPU/CPU-capable Ollama server or tunnel URL (e.g. ngrok or cloud instance)
+      - key: OLLAMA_BASE_URL
+        value: http://localhost:11434
+      - key: GEMMA_VISION_MODEL
+        value: gemma3:4b
+      - key: OLLAMA_MOCK_FALLBACK
+        value: "true"
+      - key: TABPFN_MODE
+        value: LOCAL
+      - key: ENABLE_TABPFN_API
+        value: "false"
+      - key: TABPFN_TOKEN
+        sync: false
